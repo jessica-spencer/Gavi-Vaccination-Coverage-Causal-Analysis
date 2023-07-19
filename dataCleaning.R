@@ -1,0 +1,37 @@
+if(!requireNamespace("plyr"))
+  install.packages("plyr", repos = "https://cloud.r-project.org")
+library("plyr")
+
+if(!requireNamespace("dplyr"))
+  install.packages("dplyr", repos = "https://cloud.r-project.org")
+library("dplyr")
+
+if(!requireNamespace("tidyverse"))
+  install.packages("tidyverse", repos = "https://cloud.r-project.org")
+library("tidyverse")
+
+if(!requireNamespace("ggplot2"))
+  install.packages("ggplot2", repos = "https://cloud.r-project.org")
+library("ggplot2")
+if(!requireNamespace("gridExtra"))
+  install.packages("gridExtra", repos = "https://cloud.r-project.org")
+library("gridExtra")
+
+if(!requireNamespace("foreign"))
+  install.packages("foreign", repos = "https://cloud.r-project.org")
+library("foreign")
+
+if(!requireNamespace("rstanarm"))
+  install.packages("rstanarm", repos = "https://cloud.r-project.org")
+library("rstanarm")
+
+#dat = read.dta("../dataverse_files/mortality.dta")
+#dat1 = read.csv("../dataverse_files/gavi.csv")
+dat1 = read.dta("../dataverse_files/gavi_final.dta")
+pregavi = dat1 %>% filter(year<2000)
+phase1 = dat1 %>% filter(year>=2001 & year<=2005)
+phase1$treatment = ifelse(phase1$anygavi==100,1,0)
+phase2 = dat1 %>%  filter(year>2005 & year <=2010)
+phase3 = dat1 %>%  filter(year==2011)
+phase4 = dat1 %>% filter(year==2012)
+phase5 = dat1 %>% filter(year==2013)
